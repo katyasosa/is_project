@@ -1,0 +1,7 @@
+{% block content %}
+    Hello, {% if user.is_authenticated %} {{ user.username }} {% else %} Anonymus {% endif %} !
+    <br>
+    <a href="/login">Login</a>
+    <br>
+    <a href="/logout">Logout</a>
+{% endblock %}
