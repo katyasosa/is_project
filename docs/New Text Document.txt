@@ -1,0 +1,49 @@
+Exposition Stages
+=================
+
+Idea
+----
+Manager
+
+dates
+
+Plant Selection
+---------------
+Biolog
+
+selects plants
+
+Design
+------
+Designer
+
+places plants
+
+Verification
+------------
+Biolog
+
+pass/not pass
+
+
+Approval
+--------
+Manager 
+pass/not pass
+
+
+Waiting
+-------
+None
+
+Active
+------
+Biolog
+
+statistics
+
+Archive
+-------
+Manager
+
+
