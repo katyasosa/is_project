@@ -6,6 +6,15 @@ class Room(models.Model):
     area = models.IntegerField()
 
 
+class PlantSpecies(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
+
+class Plant(models.Model):
+    species = models.ForeignKey(PlantSpecies)
+
+
 class Exposition(models.Model):
     STAGES = zip(itertools.count(), ["idea",
                                      "plant_selection",
@@ -25,10 +34,3 @@ class Exposition(models.Model):
     plants = models.ManyToManyField(Plant)
 
 
-class PlantSpecies(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-
-
-class Plant(models.Model):
-    species = models.ForeignKey(PlantSpecies)
