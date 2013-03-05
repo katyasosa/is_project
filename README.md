@@ -13,9 +13,9 @@ Installation
    $ ./manage.py syncdb && ./manage.py migrate
    $ ./manage.py runserver
    ```
-3. Go to [http://localhost:8000] [http://localhost:8000].
+3. Go to [http://localhost:8000](http://localhost:8000).
 
-**Note**: admin site is at [/admin] [http://localhost:8000/admin].
+**Note**: admin site is at [/admin](http://localhost:8000/admin).
 
 [pip]: http://www.pip-installer.org/en/1.3.X
 [install-pip]: http://www.pip-installer.org/en/1.3.X/installing.html
