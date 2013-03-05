@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
     {% if user.is_authenticated %}
-        Hello,  {{ user.username }}!
         {% if user.groups.all %}
             <br>
             Your roles are:
@@ -15,11 +14,7 @@
         {% endif %}
         <br>
         Proceed to the <a href={% url 'exposition_list' %}>list of expositons</a>
-
-        <br>
-        <a href="users/logout">Logout</a>
     {% else %}
-        Please, <a href="users/login">login</a>
     {% endif %}
 
 {% endblock %}
