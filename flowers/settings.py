@@ -1,11 +1,12 @@
-# Django settings for flowers project.
+import sys
+
+from unipath import FSPath as Path
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-import os
-PACKAGE_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), '../'))
-
+PROJECT_ROOT = Path(__file__).absolute().ancestor(1)
+sys.path.insert(0, PROJECT_ROOT.child("apps"))
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -18,7 +19,7 @@ LOGIN_REDIRECT_URL = '/'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(PACKAGE_ROOT, 'database', 'SQLite_db'),                      # Or path to database file if using sqlite3.
+        'NAME': PROJECT_ROOT.child('dev.db'),   # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -66,7 +67,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = PROJECT_ROOT.child("static")
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -107,17 +108,13 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'flowers.urls'
+ROOT_URLCONF = 'urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'flowers.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PACKAGE_ROOT, 'templates'),
-    'templates'
+    PROJECT_ROOT.child("templates")
 )
 
 INSTALLED_APPS = (
@@ -128,8 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+
     'south',
 
     'employees',
