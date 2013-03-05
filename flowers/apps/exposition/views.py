@@ -24,6 +24,6 @@ def create_exposition(request):
     else:
         form = AddExpositionForm()  # An unbound form
 
-    return render(request, 'create_exposition.html', {
+    return render(request, 'exposition/create_exposition.html', {
         'form': form,
     })

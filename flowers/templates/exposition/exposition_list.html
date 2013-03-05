@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if exposition_list %}
+        <ul>
+            {% for exp in exposition_list %}
+                <li>{{ exp.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No expositions are available.</p>
+    {% endif %}
+    <br>
+    <a href={% url 'exposition.views.create_exposition' %}>Create expositon</a>
+{% endblock %}

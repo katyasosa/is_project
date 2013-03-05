@@ -7,7 +7,7 @@ urlpatterns = patterns('',
                        url(r'^list/$',
                            ListView.as_view(
                            queryset=Exposition.objects.all(),
-                           template_name='exposition_list.html'),
+                           template_name='exposition/exposition_list.html'),
                            name='exposition_list'),
                        url(r'^create_exposition/$', create_exposition))
 
