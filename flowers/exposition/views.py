@@ -1,4 +1,3 @@
-# Create your views here.
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
