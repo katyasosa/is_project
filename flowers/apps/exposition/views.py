@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
@@ -19,6 +20,9 @@ def create_exposition(request):
             exp = Exposition()
             exp.name = form.data['name']
             exp.description = form.data['description']
+            exp.stage = exp.STAGE_IDEA
+            exp.begin = exp.end = date.today()
+            exp.room_id = 1
             exp.save()
             return HttpResponseRedirect('') # Redirect after POST
     else:
