@@ -1,15 +1,21 @@
 is_project
 ==========
 
-How do I simply run django?
-===========================
+Installation
+------------
 
-nice and short django tutorial - https://docs.djangoproject.com/en/dev/intro/tutorial01/
+1. Make sure you have pip, otherwise, follow the instructions
+   [here] [install-pip].
+2. Do the usual Django boilerplate:
+   ```bash
+   $ pip install -r flowers/requirements.txt
+   $ cd flowers
+   $ ./manage.py syncdb && ./manage.py migrate
+   $ ./manage.py runserver
+   ```
+3. Go to [http://localhost:8000] [http://localhost:8000].
 
-* install python 2
-* install django (easy_install django or pip install django)
-* python manage.py runserver - this runs server on http://localhost:8000/
+**Note**: admin site is at [/admin] [http://localhost:8000/admin].
 
-The database used is SQLite, with database file in database/SQLite_db. Not sure that keeping database in git is a good idea =)
-
-PS. http://localhost:8000/admin is the admin page. login/password is admin.
+[pip]: http://www.pip-installer.org/en/1.3.X
+[install-pip]: http://www.pip-installer.org/en/1.3.X/installing.html
