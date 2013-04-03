@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.groups.all %}
+            <br>
+            Your roles are:
+            {% for group in user.groups.all %}
+                <br>
+                {{ group.name }}
+            {% endfor %}
+        {% else %}
+            <br>
+            You have no role.
+        {% endif %}
+        <br>
+        Proceed to the <a href={% url 'exposition_list' %}>list of expositons</a>
+    {% else %}
+    {% endif %}
+
+{% endblock %}
