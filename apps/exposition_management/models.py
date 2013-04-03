@@ -36,7 +36,15 @@ class Exposition(models.Model):
     stage = models.SmallIntegerField(choices=[(STAGE_IDEA, 'Idea')])
     begin = models.DateField()
     end = models.DateField()
-    plants = models.ManyToManyField(Plant)
+    plants = models.ManyToManyField(Plant, through='PlantPosition')
 
     def __str__(self):
         return self.name
+
+
+class PlantPosition(models.Model):
+    plant = models.ForeignKey(Plant)
+    exposition = models.ForeignKey(Exposition)
+
+    position_x = models.IntegerField(default=0)
+    position_y = models.IntegerField(default=0)
