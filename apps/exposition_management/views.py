@@ -1,9 +1,12 @@
+from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, View
 from django import forms
 from django.views.generic.edit import ModelFormMixin
 from django.forms.models import modelformset_factory
+
+from extra_views import ModelFormSetView
 
 from .models import Exposition, Plant, PlantPosition
 
@@ -62,17 +65,17 @@ class AddPlantsToExpositionView(EditExpositionMixin, UpdateView):
         return super(ModelFormMixin, self).form_valid(form)
 
 
-class EditPositionsView(EditExpositionMixin, View):
+class EditPositionsView(ModelFormSetView):
+    template_name = 'exposition_management/move_plants.html'
+    model = PlantPosition
 
-    def get(self, *args, **kwargs):
-        exposition = Exposition.objects.get(pk=kwargs['pk'])
-        formset = PositionsFormSet(queryset=exposition.plantposition_set.all())
-        return render_to_response('exposition_management/move_plants.html', {
-            "formset": formset,
-        })
+    def get_queryset(self):
+        pk = self.kwargs['pk']
+        return super(EditPositionsView, self).get_queryset().filter(
+            exposition=pk)
 
-    def post(self, *args, **kwargs):
-        pass
+    def get_formset(self):
+        return PositionsFormSet
 
 
 class ExpositionListView(ListView):
