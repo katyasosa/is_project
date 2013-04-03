@@ -5,6 +5,7 @@ from django.utils.encoding import python_2_unicode_compatible
 @python_2_unicode_compatible
 class Room(models.Model):
     area = models.IntegerField()
+    image = models.ImageField(upload_to='room_images')
 
     def __str__(self):
         return str(self.area) + " area room"

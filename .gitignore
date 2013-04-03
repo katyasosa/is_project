@@ -39,6 +39,7 @@ nosetests.xml
 
 # Databases
 *.db
+media
 
 # virtualenv
 include
