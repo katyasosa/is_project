@@ -9,10 +9,13 @@ Installation
 2. Do the usual Django boilerplate:
    ```bash
    $ virtualenv .
+   $ source bin/activate
    $ pip install -r requirements.txt
    $ ./manage.py syncdb && ./manage.py migrate
    $ ./manage.py runserver
    ```
+
+   **Note** source Scripts/activate on Windows
 3. Go to [http://localhost:8000](http://localhost:8000).
 
 **Note**: admin site is at [/admin](http://localhost:8000/admin).
