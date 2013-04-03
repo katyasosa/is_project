@@ -4,11 +4,11 @@ from .views import CreateExpositionView, ExpositionListView, \
     ExpositionDetailView, PlantListView, AddPlantView
 
 urlpatterns = patterns('',
-   url(r'^list/$', ExpositionListView.as_view(),
+   url(r'^expositions/$', ExpositionListView.as_view(),
        name='exposition_list'),
-   url(r'^create_exposition/$', CreateExpositionView.as_view(),
+   url(r'^expositions/create/$', CreateExpositionView.as_view(),
        name='create_exposition'),
-   url(r'^(?P<pk>\d+)/$', ExpositionDetailView.as_view(),
+   url(r'^expositions/(?P<pk>\d+)/$', ExpositionDetailView.as_view(),
        name='exposition_detail'),
 
    url(r'^plants/$', PlantListView.as_view(),
