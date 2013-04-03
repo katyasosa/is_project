@@ -1,9 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    Название выставки: {{ exposition.name }}
+    <h1>
+        Exposition {{ exposition.name }}
+    </h1>
+
     <br>
-    Описание выставки: {{ exposition.description }}
+
+    <h3>
+        Description
+    </h3>
+    {{ exposition.description }}
+
     <br>
-    Выставка проходит с {{ exposition.begin }} по {{ exposition.end }}
+
+    <h3>Timeline</h3>
+    Active from {{ exposition.begin }} to {{ exposition.end }}.
+
+    <h3>Actions</h3>
+    <ul>
+        <li>
+            <a href={% url "add_plants_to_exposition" pk=exposition.pk%}>Add plants</a>
+        </li>
+    </ul>
 {% endblock %}
