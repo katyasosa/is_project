@@ -18,6 +18,6 @@ urlpatterns = patterns('',
        {'next_page': '/'},
        name='logout'),
 
-   url(r'^exposition/', include('exposition_management.urls')),
+   url(r'^exposition_management/', include('exposition_management.urls')),
    url(r'^admin/', include(admin.site.urls))
 )
