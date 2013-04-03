@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+    {% if plant_list %}
+        <ul>
+            {% for plant in plant_list %}
+                <li> plant </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No plants yet.</p>
+    {% endif %}
+    <br>
+    <a href={% url 'add_plant' %}>Add plant</a>
+{% endblock %}

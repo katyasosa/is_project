@@ -1,20 +1,22 @@
 from django.conf.urls import patterns, url
-from django.views.generic import ListView, DetailView
 
-from .models import Exposition
-from .views import CreateExpositionView
+from .views import CreateExpositionView, ExpositionListView, \
+    ExpositionDetailView, PlantListView, AddPlantView
 
 urlpatterns = patterns('',
-   url(r'^list/$',
-       ListView.as_view(
-           queryset=Exposition.objects.all(),
-           template_name='exposition_management/exposition_list.html'),
+   url(r'^list/$', ExpositionListView.as_view(),
        name='exposition_list'),
+   url(r'^create_exposition/$', CreateExpositionView.as_view(),
+       name='create_exposition'),
+   url(r'^(?P<pk>\d+)/$', ExpositionDetailView.as_view(),
+       name='exposition_detail'),
 
-   url(r'^create_exposition/$', CreateExpositionView.as_view(), name='create_exposition'),
+   url(r'^plants/$', PlantListView.as_view(),
+       name='plant_list'),
+   url(r'^plants/add/$', AddPlantView.as_view(),
+       name='add_plant')
 
-   url(r'^(?P<pk>\d+)/$',
-       DetailView.as_view(model=Exposition, template_name='exposition_management/exposition_details.html'),
-       name="exposition_detail"))
+
+)
 
 
