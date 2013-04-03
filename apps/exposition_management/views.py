@@ -1,6 +1,8 @@
 from django.core.urlresolvers import reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django import forms
+from django.views.generic.edit import ModelFormMixin
+from exposition_management.models import PlantPosition
 
 from .models import Exposition, Plant
 
@@ -30,6 +32,17 @@ class AddPlantsToExpositionView(UpdateView):
     model = Exposition
     template_name = "exposition_management/add_plants_to_exposition.html"
     form_class = AddPlantsToExpositionForm
+
+    def form_valid(self, form):
+        exposition = form.save(commit=False)
+
+        plants = form.cleaned_data.get('plants')
+        for p in plants:
+            relation = PlantPosition(exposition=exposition, plant=p)
+            relation.save()
+
+        exposition.save()
+        return super(ModelFormMixin, self).form_valid(form)
 
     def get_success_url(self):
         return reverse('exposition_detail',
