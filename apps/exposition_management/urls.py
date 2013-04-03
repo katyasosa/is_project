@@ -11,7 +11,7 @@ urlpatterns = patterns('',
        name='exposition_list'),
 
    url(r'^create_exposition/$', create_exposition, name='create_exposition'),
-   
+
    url(r'^(?P<pk>\d+)/$',
        DetailView.as_view(model=Exposition, template_name='exposition/exposition_details.html'),
        name="exposition_detail"))

@@ -12,10 +12,10 @@ urlpatterns = patterns('',
 
    url(r'^login$', 'django.contrib.auth.views.login',
        {'template_name': 'registration/login.html'},
-
        name='login'),
-   url(r'^logout/$',
-       'django.contrib.auth.views.logout', {'next_page': '/'},
+
+   url(r'^logout/$', 'django.contrib.auth.views.logout',
+       {'next_page': '/'},
        name='logout'),
 
    url(r'^exposition/', include('exposition_management.urls')),
