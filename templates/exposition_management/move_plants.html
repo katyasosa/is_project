@@ -5,6 +5,7 @@
     <form action="" method="post">{% csrf_token %}
         {{ formset.management_form }}
         {% for form in formset %}
+            <h3>{{ form.instance.plant }}</h3>
             {{ form }}
             <br>
         {% endfor %}

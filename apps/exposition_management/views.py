@@ -26,7 +26,7 @@ class AddPlantsToExpositionForm(forms.ModelForm):
 class PlantPositionForm(forms.ModelForm):
     class Meta:
         model = PlantPosition
-        fields = ['plant', 'position_x', 'position_y']
+        fields = ['position_x', 'position_y']
 
 
 PositionsFormSet = modelformset_factory(form=PlantPositionForm, extra=0,
