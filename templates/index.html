@@ -12,8 +12,19 @@
             <br>
             You have no role.
         {% endif %}
-        <br>
-        Proceed to the <a href={% url 'exposition_list' %}>list of expositons</a>
+
+        <div>
+            <h3>Actions</h3>
+            <ul>
+                <li>
+                    View <a href={% url 'exposition_list' %}>list of expositions</a>
+                </li>
+                <li>
+                    View <a href={% url 'plant_list' %}>list of plants</a>
+                </li>
+            </ul>
+        </div>
+
     {% else %}
     {% endif %}
 
