@@ -2,9 +2,8 @@ from django.core.urlresolvers import reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django import forms
 from django.views.generic.edit import ModelFormMixin
-from exposition_management.models import PlantPosition
 
-from .models import Exposition, Plant
+from .models import Exposition, Plant, PlantPosition
 
 
 class AddExpositionForm(forms.ModelForm):
@@ -36,7 +35,7 @@ class AddPlantsToExpositionView(UpdateView):
     def form_valid(self, form):
         exposition = form.save(commit=False)
 
-        plants = form.cleaned_data.get('plants')
+        plants = form.cleaned_data['plants']
         for p in plants:
             relation = PlantPosition(exposition=exposition, plant=p)
             relation.save()
