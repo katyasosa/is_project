@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+    <form action="" method="post">{% csrf_token %}
+        <ul>
+            {{ formset.management_form }}
+            {% for form in formset %}
+                {{ form }}
+                <br>
+            {% endfor %}
+        </ul>
+        <input type="submit" value="Submit"/>
+    </form>
+    <br>
+    <a href={% url "exposition_list" %}>Expositon list</a>
+{% endblock %}

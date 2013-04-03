@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 
 from .views import CreateExpositionView, ExpositionListView, \
     ExpositionDetailView, PlantListView, AddPlantView, \
-    AddPlantsToExpositionView
+    AddPlantsToExpositionView, EditPositionsView
 
 urlpatterns = patterns('',
    url(r'^expositions/$', ExpositionListView.as_view(),
@@ -15,6 +15,9 @@ urlpatterns = patterns('',
    url(r'^expositions/(?P<pk>\d+)/add-plants$',
        AddPlantsToExpositionView.as_view(),
        name='add_plants_to_exposition'),
+   url(r'^expositions/(?P<pk>\d+)/place-plants$',
+       EditPositionsView.as_view(),
+       name='place_plants'),
 
    url(r'^plants/$', PlantListView.as_view(),
        name='plant_list'),
