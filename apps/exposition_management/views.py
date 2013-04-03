@@ -11,6 +11,7 @@ class AddExpositionForm(forms.ModelForm):
         model = Exposition
         exclude = ['plants']
 
+
 class CreateExpositionView(CreateView):
     model = Exposition
     template_name = 'exposition_management/create_exposition.html'
