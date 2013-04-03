@@ -8,8 +8,8 @@ Installation
    [here] [install-pip].
 2. Do the usual Django boilerplate:
    ```bash
-   $ pip install -r flowers/requirements.txt
-   $ cd flowers
+   $ virtualenv .
+   $ pip install -r requirements.txt
    $ ./manage.py syncdb && ./manage.py migrate
    $ ./manage.py runserver
    ```
