@@ -1,5 +1,5 @@
 from django.core.urlresolvers import reverse
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django import forms
 
 from .models import Exposition, Plant
@@ -11,6 +11,11 @@ class AddExpositionForm(forms.ModelForm):
         model = Exposition
         exclude = ['plants']
 
+class AddPlantsToExpositionForm(forms.ModelForm):
+    class Meta:
+        model = Exposition
+        fields = ['plants']
+
 
 class CreateExpositionView(CreateView):
     model = Exposition
@@ -20,6 +25,14 @@ class CreateExpositionView(CreateView):
     def get_success_url(self):
         return reverse('exposition_list')
 
+
+class AddPlantsToExpositionView(UpdateView):
+     model = Exposition
+     template_name = "exposition_management/add_plants_to_exposition.html"
+     form_class = AddPlantsToExpositionForm
+
+     def get_success_url(self):
+         return reverse('exposition_list')
 
 class ExpositionListView(ListView):
     model = Exposition

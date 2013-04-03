@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+    <form action="" method="post">{% csrf_token %}
+        <ul>
+            {{ form.as_ul }}
+        </ul>
+        <input type="submit" value="Submit"/>
+    </form>
+    <br>
+    <a href={% url "exposition_list" %}>Exposition list</a>
+{% endblock %}
