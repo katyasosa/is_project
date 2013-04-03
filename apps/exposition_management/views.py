@@ -6,10 +6,10 @@ from .models import Exposition, Plant
 
 
 class AddExpositionForm(forms.ModelForm):
-
     class Meta:
         model = Exposition
         exclude = ['plants']
+
 
 class AddPlantsToExpositionForm(forms.ModelForm):
     class Meta:
@@ -27,12 +27,14 @@ class CreateExpositionView(CreateView):
 
 
 class AddPlantsToExpositionView(UpdateView):
-     model = Exposition
-     template_name = "exposition_management/add_plants_to_exposition.html"
-     form_class = AddPlantsToExpositionForm
+    model = Exposition
+    template_name = "exposition_management/add_plants_to_exposition.html"
+    form_class = AddPlantsToExpositionForm
 
-     def get_success_url(self):
-         return reverse('exposition_list')
+    def get_success_url(self):
+        return reverse('exposition_detail',
+                       kwargs={'pk': self.get_object().pk})
+
 
 class ExpositionListView(ListView):
     model = Exposition
@@ -45,7 +47,6 @@ class ExpositionDetailView(DetailView):
 
 
 class AddPlantForm(forms.ModelForm):
-
     class Meta:
         model = Plant
 
