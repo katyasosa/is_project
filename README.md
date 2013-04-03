@@ -3,10 +3,13 @@ is_project
 
 Installation
 ------------
-
-1. Make sure you have pip, otherwise, follow the instructions
-   [here] [install-pip].
-2. Do the usual Django boilerplate:
+- Install Python 2.7
+- Make sure you have pip(python package manager),
+  otherwise, follow the instructions [here] [install-pip].
+- Install virtualenv(virtual environment tool,
+  against works on my machine illness).
+- git clone https://github.com/katyasosa/is_project.git
+- Do the usual Django boilerplate:
    ```bash
    $ virtualenv .
    $ source bin/activate
@@ -16,7 +19,7 @@ Installation
    ```
 
    **Note** source Scripts/activate on Windows
-3. Go to [http://localhost:8000](http://localhost:8000).
+- Go to [http://localhost:8000](http://localhost:8000).
 
 **Note**: admin site is at [/admin](http://localhost:8000/admin).
 
