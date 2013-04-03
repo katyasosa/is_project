@@ -39,3 +39,9 @@ nosetests.xml
 
 # Databases
 *.db
+
+# virtualenv
+include
+lib
+local
+Scripts
