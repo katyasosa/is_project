@@ -25,7 +25,7 @@
                 var row = $("<div class='row'></div>");
                 for (var j = 0; j < width; j++) {
                     var d = $("<div class='cell'></div>");
-                    d.data({"x": i, "y": j});
+                    d.data({"x": j, "y": i});
                     d.droppable({
                         drop: function (event, ui) {
                             var plant = ui.draggable;
@@ -46,14 +46,23 @@
             var plants_collection = $("#plants_collection");
             for (i = 0; i < plant_forms.length; i++) {
                 var p = $("<div class='plant'></div>");
-                p.draggable()
-                        .data('form', plant_forms[i])
-                        .appendTo(plants_collection);
+                var form = plant_forms[i];
+                var x = $(form).find('.position_x input').attr('value');
+                var y = $(form).find('.position_y input').attr('value');
+                p.data('form', form).appendTo(plants_collection);
+                if (x >= 0 && x <= width && y >= 0 && y <= height) {
+                    p.css('left', 30 * x);
+                    p.css('top', 30 * y);
+                } else {
+                    p.css('left', 330);
+                    p.css('top', 30);
+                }
+                p.draggable();
             }
         })
     </script>
     <style>
-        #room_container{
+        #room_container {
             width: 400px;
             height: 400px;
         }
@@ -67,19 +76,19 @@
 
         #plants_collection {
             position: absolute;
-            left: 320px;
             height: 300px;
-            float: right;
+            float : right;
         }
 
         .row {
-            width: 30px;
-            float: left;
+            width: 303px;
+            height: 30px;
         }
 
         .cell {
-            width: 30px;
-            height: 30px;
+            float: left;
+            width: 28px;
+            height: 28px;
             background: yellowgreen;
             border: 1px solid black;
         }
@@ -90,6 +99,10 @@
             width: 28px;
             background: darkturquoise;
             border: 1px solid black;
+        }
+
+        .plant_form {
+            display: none;
         }
 
     </style>
