@@ -18,7 +18,8 @@ Installation
    $ ./manage.py runserver
    ```
 
-   **Note** source Scripts/activate on Windows
+   **Note** source Scripts/activate on Windows; pillow installation on windows
+   can be painful.
 - Go to [http://localhost:8000](http://localhost:8000).
 
 **Note**: admin site is at [/admin](http://localhost:8000/admin).
