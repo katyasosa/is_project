@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block head %}
+    <script>
+        $(function(){
+            var height = 10;
+            var width = 10;
+            var room = $("#room");
+
+        })
+    </script>
+    <style>
+        #room{
+            width: 100px;
+            height: 100px;
+            background: darkcyan;
+        }
+
+    </style>
+{% endblock %}
+
 {% block content %}
     <form action="" method="post">{% csrf_token %}
         {{ formset.management_form }}
@@ -13,4 +32,10 @@
     </form>
     <br>
     <a href={% url "exposition_list" %}>Exposition list</a>
+
+
+
+    <div id="room">
+
+    </div>
 {% endblock %}
