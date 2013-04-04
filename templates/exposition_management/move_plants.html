@@ -3,39 +3,127 @@
 
 {% block head %}
     <script>
-        $(function(){
-            var height = 10;
-            var width = 10;
-            var room = $("#room");
+        var height = 10;
+        var width = 10;
+        var table = new Array(height);
 
+        for (var i = 0; i < height; i++) {
+            table[i] = new Array(width);
+        }
+
+        var plant_forms;
+        function collect_forms() {
+            plant_forms = $(".plant_form");
+            $(".plant_form").find('.position_x input').attr('hidden', true);
+            $(".plant_form").find('.position_y input').attr('hidden', true);
+        }
+
+        $(function () {
+            collect_forms();
+            var room = $("#room");
+            for (var i = 0; i < height; i++) {
+                var row = $("<div class='row'></div>");
+                for (var j = 0; j < width; j++) {
+                    var d = $("<div class='cell'></div>");
+                    d.data({"x": i, "y": j});
+                    d.droppable({
+                        drop: function (event, ui) {
+                            var plant = ui.draggable;
+                            var form = $(plant.data("form"));
+                            form.find('.position_x input')
+                                    .attr('value', $(this).data("x"));
+                            form.find('.position_y input')
+                                    .attr('value', $(this).data("y"));
+
+                            $(this).addClass("ui-state-highlight");
+                        }});
+                    row.append(d);
+                    table[i][j] = d;
+                }
+                room.append(row);
+            }
+
+            var plants_collection = $("#plants_collection");
+            for (i = 0; i < plant_forms.length; i++) {
+                var p = $("<div class='plant'></div>");
+                p.draggable()
+                        .data('form', plant_forms[i])
+                        .appendTo(plants_collection);
+            }
         })
     </script>
     <style>
-        #room{
-            width: 100px;
-            height: 100px;
+        #room_container{
+            width: 400px;
+            height: 400px;
+        }
+
+        #room {
+            position: absolute;
+            width: 300px;
+            height: 300px;
             background: darkcyan;
+        }
+
+        #plants_collection {
+            position: absolute;
+            left: 320px;
+            height: 300px;
+            float: right;
+        }
+
+        .row {
+            width: 30px;
+            float: left;
+        }
+
+        .cell {
+            width: 30px;
+            height: 30px;
+            background: yellowgreen;
+            border: 1px solid black;
+        }
+
+        .plant {
+            position: absolute;
+            height: 28px;
+            width: 28px;
+            background: darkturquoise;
+            border: 1px solid black;
         }
 
     </style>
 {% endblock %}
 
 {% block content %}
+    <div id="room_container">
+        <div id="room">
+
+        </div>
+        <div id="plants_collection">
+
+        </div>
+    </div>
     <form action="" method="post">{% csrf_token %}
         {{ formset.management_form }}
         {% for form in formset %}
-            <h3>{{ form.instance.plant }}</h3>
-            {{ form }}
-            <br>
+            <div class="plant_form">
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                <div class='position_x'>
+                    {{ form.position_x }}
+                </div>
+                <div class='position_y'>
+                    {{ form.position_y }}
+                </div>
+                <br>
+            </div>
         {% endfor %}
         <input type="submit" value="Submit"/>
     </form>
     <br>
     <a href={% url "exposition_list" %}>Exposition list</a>
+    <br>
 
-
-
-    <div id="room">
-
-    </div>
 {% endblock %}
