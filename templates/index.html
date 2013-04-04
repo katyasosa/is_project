@@ -17,11 +17,14 @@
             <h3>Actions</h3>
             <ul>
                 <li>
-                    View <a href={% url 'exposition_list' %}>list of expositions</a>
+                    View <a href={% url 'exposition_list' %}>
+                    list of expositions</a>
                 </li>
-                <li>
-                    View <a href={% url 'plant_list' %}>list of plants</a>
-                </li>
+                {% if is_biologist %}
+                    <li>
+                        View <a href={% url 'plant_list' %}>list of plants</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
 

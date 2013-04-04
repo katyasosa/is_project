@@ -19,12 +19,19 @@
 
     <h3>Actions</h3>
     <ul>
-        <li>
-            <a href={% url "add_plants_to_exposition" pk=exposition.pk%}>Add plants</a>
-        </li>
-        <li>
-            <a href={% url "place_plants" pk=exposition.pk%}>Place plants</a>
-        </li>
+        {% if is_biologist %}
+            <li>
+                <a href={% url "add_plants_to_exposition" pk=exposition.pk %}>
+                    Add plants</a>
+            </li>
+        {% endif %}
+
+        {% if is_designer %}
+            <li>
+                <a href={% url "place_plants" pk=exposition.pk %}>
+                    Place plants</a>
+            </li>
+        {% endif %}
     </ul>
     <a href={% url "exposition_list" %}>Exposition list</a>
 {% endblock %}
