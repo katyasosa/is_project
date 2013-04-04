@@ -37,10 +37,6 @@ nosetests.xml
 .idea
 .Python
 
-# Databases
-*.db
-media
-
 # virtualenv
 include
 lib
