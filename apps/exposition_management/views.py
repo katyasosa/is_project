@@ -1,7 +1,5 @@
-from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, View
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django import forms
 from django.views.generic.edit import ModelFormMixin
 from django.forms.models import modelformset_factory
@@ -14,7 +12,7 @@ from .models import Exposition, Plant, PlantPosition
 class AddExpositionForm(forms.ModelForm):
     class Meta:
         model = Exposition
-        exclude = ['plants']
+        exclude = ['plants', 'stage']
 
 
 class AddPlantsToExpositionForm(forms.ModelForm):
@@ -43,6 +41,13 @@ class CreateExpositionView(CreateView):
     model = Exposition
     template_name = 'exposition_management/create_exposition.html'
     form_class = AddExpositionForm
+
+    def form_valid(self, form):
+        exposition = form.save(commit=False)
+        exposition.stage = Exposition.STAGE_IDEA
+        exposition.save()
+        return super(ModelFormMixin, self).form_valid(form)
+
 
     def get_success_url(self):
         return reverse('exposition_list')
