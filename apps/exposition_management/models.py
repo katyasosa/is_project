@@ -8,7 +8,7 @@ class Room(models.Model):
     image = models.ImageField(upload_to='room_images')
 
     def __str__(self):
-        return str(self.area) + " area room"
+        return unicode(self.area) + u' area room'
 
 
 @python_2_unicode_compatible
