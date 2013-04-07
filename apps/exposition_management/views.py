@@ -62,6 +62,7 @@ class AddPlantsToExpositionView(EditExpositionMixin, UpdateView):
         exposition = form.save(commit=False)
 
         plants = form.cleaned_data['plants']
+        PlantPosition.objects.filter(exposition=exposition).delete()
         for p in plants:
             relation = PlantPosition(exposition=exposition, plant=p)
             relation.save()
