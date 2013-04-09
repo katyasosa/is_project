@@ -20,6 +20,6 @@ urlpatterns = patterns('',
        {'next_page': '/'},
        name='logout'),
 
-   url(r'^exposition_management/', include('exposition_management.urls')),
+   url(r'', include('exposition_management.urls')),
    url(r'^admin/', include(admin.site.urls))
 ) +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
