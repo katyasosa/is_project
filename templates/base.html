@@ -1,18 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css"/>
-    <title>{% block title %}Welcome to Florida!{% endblock %}</title>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 
+    <title>{% block title %}Welcome to Florida!{% endblock %}</title>
+{#    <link rel="stylesheet" href="style.css"/>#}
+    <style type="text/css">
+        div.nav {
+            width: 100%;
+            float: left;
+            margin: 0 0 1em 0;
+            padding: 0;
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #ccc;  }
+        div.nav ul {
+            list-style: none;
+            width: 800px;
+            margin: 0 auto;
+            padding: 0; }
+        div.nav li {
+            float: left; }
+        div.nav li a {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #66B98B;
+            border-right: 1px solid #ccc; }
+        div.nav li:first-child a {
+            border-left: 1px solid #ccc; }
+        div.nav li a:hover {
+            color: #66B98B;
+            background-color: #D0E5A0; }
+    </style>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-    {% block head %}
-
-    {% endblock %}
 </head>
 
 <body>
+
+<!-- Site navigation menu -->
+<div class="nav">
+    <ul>
+        <li>
+            <a href= {% url "main_page" %}> Home</a>
+        </li>
+        <li>
+            <a href= {% url "exposition_list" %}> Exposition List</a>
+        </li>
+        <li>
+            <a href= {% url "plant_list" %}> Plant List</a>
+        </li>
+    </ul>
+</div>
 
 <div id="header">
     {% if user.is_authenticated %}
