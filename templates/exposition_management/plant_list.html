@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load url from future %}
-
+<div id="content">
 {% block content %}
     {% if plant_list %}
+        We have next plants
         <ul>
             {% for plant in plant_list %}
                 <li> {{ plant }} </li>
@@ -11,6 +12,9 @@
     {% else %}
         <p>No plants yet.</p>
     {% endif %}
-    <br>
-    <a href={% url 'add_plant' %}>Add plant</a>
+    <div id="actions">
+        You can
+        <a href={% url 'add_plant' %}>add new plant to database</a>
+    </div>
 {% endblock %}
+</div>

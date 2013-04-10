@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load url from future %}
-
+<div id="content">
 {% block content %}
     {% if exposition_list %}
+        You can view the next expositions
         <ul>
             {% for exp in exposition_list %}
                 <li>
@@ -13,8 +14,11 @@
     {% else %}
         <p>No expositions are available.</p>
     {% endif %}
-    <br>
     {% if is_manager %}
-        <a href={% url 'create_exposition' %}>Create exposition</a>
+        <div id="actions">
+            or
+            <a href={% url 'create_exposition' %}>create exposition</a>
+        </div>
     {% endif %}
 {% endblock %}
+</div>

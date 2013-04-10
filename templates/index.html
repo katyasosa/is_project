@@ -1,28 +1,28 @@
 {% extends "base.html" %}
+<div id="content">
 {% block content %}
     {% if user.is_authenticated %}
         {% if user.groups.all %}
-            <br>
             Your roles are:
+            <ul>
             {% for group in user.groups.all %}
-                <br>
-                {{ group.name }}
+                <li> {{ group.name }} </li>
             {% endfor %}
+            </ul>
         {% else %}
-            <br>
             You have no role.
         {% endif %}
 
-        <div>
-            <h3>Actions</h3>
+        <div id="actions">
+            Actions
             <ul>
                 <li>
-                    View <a href={% url 'exposition_list' %}>
+                    view <a href={% url 'exposition_list' %}>
                     list of expositions</a>
                 </li>
                 {% if is_biologist %}
                     <li>
-                        View <a href={% url 'plant_list' %}>list of plants</a>
+                        view <a href={% url 'plant_list' %}>list of plants</a>
                     </li>
                 {% endif %}
             </ul>
@@ -32,3 +32,4 @@
     {% endif %}
 
 {% endblock %}
+</div>
