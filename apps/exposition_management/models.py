@@ -69,3 +69,8 @@ class PlantPosition(models.Model):
 
     position_x = models.IntegerField(default=0)
     position_y = models.IntegerField(default=0)
+
+
+# A hack to make 'South' work with 'ImageWithThumbsField'.
+from south.modelsinspector import add_introspection_rules
+add_introspection_rules([], [r"^django_thumbs.db.models.ImageWithThumbsField"])
