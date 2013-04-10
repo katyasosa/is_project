@@ -1,17 +1,7 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
-{% load url from future %}
 
-<div id="content">
 {% block content %}
-    <form action="" method="post">{% csrf_token %}
-        <ul>
-          {% crispy form %}
-        </ul>
-        <input type="submit" value="Submit"/>
-    </form>
-    <br>
-    <a href={% url 'plant_list' %}>Plants list</a>
+  {% crispy form %}
 {% endblock %}
-</div>

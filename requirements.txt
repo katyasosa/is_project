@@ -3,3 +3,5 @@ South==0.7.6
 Unipath==0.2.1
 django-extra-views
 pillow
+django-crispy-forms==1.2.3
+django-thumbs==0.4

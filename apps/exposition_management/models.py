@@ -1,5 +1,8 @@
+from __future__ import unicode_literals
+
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from django_thumbs.db.models import ImageWithThumbsField
 
 
 @python_2_unicode_compatible
@@ -15,6 +18,8 @@ class Room(models.Model):
 class PlantSpecies(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    image = ImageWithThumbsField(
+        upload_to='plant_species', sizes=[(200, 200)], blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -30,13 +35,13 @@ class Plant(models.Model):
 
 @python_2_unicode_compatible
 class Exposition(models.Model):
-    STAGE_IDEA = 1
-    STAGE_PLANT_SELECTION = 2
-    STAGE_DESIGN = 3
-    STAGE_VERIFICATION = 4
-    STAGE_WAITING = 5
-    STAGE_ACTIVE = 6
-    STAGE_ARCHIVE = 7
+    (STAGE_IDEA,
+     STAGE_PLANT_SELECTION,
+     STAGE_DESIGN,
+     STAGE_VERIFICATION,
+     STAGE_WAITING,
+     STAGE_ACTIVE,
+     STAGE_ARCHIVE) = range(1, 8)
 
     name = models.CharField(max_length=100)
     description = models.TextField()
