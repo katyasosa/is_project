@@ -23,8 +23,4 @@ urlpatterns = patterns('',
        name='plant_list'),
    url(r'^plants/add/$', AddPlantView.as_view(),
        name='add_plant')
-
-
 )
-
-
