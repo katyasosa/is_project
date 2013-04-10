@@ -1,95 +1,11 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <title>{% block title %}Welcome to Florida!{% endblock %}</title>
-{#    <link rel="stylesheet" href="style.css"/>#}
-    <style type="text/css">
-        div.nav {
-            width: 100%;
-            float: left;
-            margin: 0 0 1em 0;
-            padding: 0;
-            background-color: #FFFFFF;
-            border-bottom: 1px solid #ccc;
-        }
-        div.nav ul {
-            list-style: none;
-            width: 50%;
-            margin: 0 auto;
-            padding: 0;
-        }
-        div.nav li {
-            float: left;
-        }
-        div.nav li a {
-            display: block;
-            padding: 8px 15px;
-            text-decoration: none;
-            font-weight: bold;
-            color: #66B98B;
-            border-right: 1px solid #ccc;
-        }
-        div.nav li:first-child a {
-            border-left: 1px solid #ccc;
-        }
-        div.nav li a:hover {
-            color: #66B98B;
-            background-color: #D0E5A0;
-        }
-        #content {
-            width: 49%;
-            margin: 0 auto;
-            padding: 0;
-            background-color: #FFFFFF;
-        }
-        #content ul{
-            list-style: none;
-            width: 100%;
-            margin: 0 auto;
-            padding: 4px;
-        }
-        #content li{
-            padding-left: 10px;
-        }
-        #sidebar {
-            float:left;
-            width:25%;
-            background-color:#FFFFFF;
-            min-height:10px; }
-        #sidebar img {
-            width: auto;
-            margin: 0 auto;
-            float: right;
-            padding-right: 10%;
-        }
-        #actions {
-            padding-top: 10px;
-        }
-        #images
-        {
-            margin: 2px;
-            border: 1px solid #0000ff;
-            height: auto;
-            width: auto;
-            float: left;
-            text-align: center;
-        }
-        #images img
-        {
-            display: inline;
-            margin: 3px;
-            border: 1px solid #ffffff;
-        }
-        #images a:hover img {border: 1px solid #0000ff;}
-        #description
-        {
-            text-align: center;
-            font-weight: normal;
-            width: 120px;
-            margin: 2px;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static "style.css" %}" media="screen" />
+
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 </head>
@@ -118,7 +34,7 @@
 
 <div id="sidebar">
     {% block logo %}
-        <img src="../media/logo.jpg" alt="" width="" height="">
+        <img src="{% static "logo.jpg" %}" alt="" width="" height="">
     {% endblock %}
 </div>
 

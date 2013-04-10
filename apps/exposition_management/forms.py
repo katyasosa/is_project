@@ -1,5 +1,6 @@
 from __future__ import absolute_import, unicode_literals
 
+from crispy_forms.helper import FormHelper
 from django import forms
 from django.forms.models import modelformset_factory
 
@@ -31,3 +32,7 @@ PositionsFormSet = modelformset_factory(
 class PlantForm(forms.ModelForm):
     class Meta:
         model = Plant
+
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        super(PlantForm, self).__init__(*args, **kwargs)
