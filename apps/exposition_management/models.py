@@ -8,7 +8,7 @@ from django_thumbs.db.models import ImageWithThumbsField
 @python_2_unicode_compatible
 class Room(models.Model):
     area = models.IntegerField()
-    image = models.ImageField(upload_to='room_images')
+    image = ImageWithThumbsField(upload_to='room_images', sizes=[(200, 200)])
 
     def __str__(self):
         return unicode(self.area) + u' area room'
@@ -41,22 +41,22 @@ class Exposition(models.Model):
      STAGE_VERIFICATION,
      STAGE_WAITING,
      STAGE_ACTIVE,
-     STAGE_ARCHIVE) = range(1, 8)
+     STAGE_ARCHIVED) = range(1, 8)
 
     name = models.CharField(max_length=100)
     description = models.TextField()
     room = models.ForeignKey(Room)
-    stage = models.SmallIntegerField(choices=[
-        (STAGE_IDEA, 'idea'),
-        (STAGE_PLANT_SELECTION, 'plant-selection'),
-        (STAGE_DESIGN, 'design'),
-        (STAGE_VERIFICATION, 'verification'),
-        (STAGE_WAITING, 'waiting'),
-        (STAGE_ACTIVE, 'active'),
-        (STAGE_ARCHIVE, 'archive'),
+    stage = models.SmallIntegerField(editable=False, choices=[
+        (STAGE_IDEA, 'Idea'),
+        (STAGE_PLANT_SELECTION, 'Plant selection'),
+        (STAGE_DESIGN, 'Design'),
+        (STAGE_VERIFICATION, 'Verification'),
+        (STAGE_WAITING, 'Waiting'),
+        (STAGE_ACTIVE, 'Active'),
+        (STAGE_ARCHIVED, 'Archive'),
     ])
-    begin = models.DateField()
-    end = models.DateField()
+    opening_date = models.DateField()
+    closing_date = models.DateField()
     plants = models.ManyToManyField(Plant, through='PlantPosition')
 
     def __str__(self):

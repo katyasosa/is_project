@@ -4,13 +4,18 @@
 <html lang="en">
 <head>
     <title>{% block title %}Welcome to Florida!{% endblock %}</title>
+
     <link href="{% static "style.css" %}" media="screen" rel="stylesheet" />
+    <!-- Note(superbobry): for some reason, GitHub-hosted CSS doesn't load :-( -->
+    <link href="{% static "datepicker.css" %}" rel="stylesheet" />
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css"
-          rel="stylesheet">
+          rel="stylesheet" />
 
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script src="https://raw.github.com/eternicode/bootstrap-datepicker/master/js/bootstrap-datepicker.js"></script>
+
+    {% block head %}{% endblock %}
 </head>
 
 <body>
