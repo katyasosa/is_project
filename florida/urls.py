@@ -1,10 +1,12 @@
+from __future__ import absolute_import
+
+from django.conf import settings
 from django.conf.urls import patterns, include, url
-from django.conf.urls.static import static
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from florida import settings
+from .forms import CrispyAuthenticationForm
 
 admin.autodiscover()
 
@@ -13,11 +15,11 @@ urlpatterns = patterns('',
        TemplateView.as_view(template_name='index.html'),
        name='main_page'),
 
-   url(r'^login$', 'django.contrib.auth.views.login',
-       {'template_name': 'registration/login.html'},
+   url(r'^accounts/login/$', 'django.contrib.auth.views.login',
+       {'template_name': 'registration/login.html',
+        'authentication_form': CrispyAuthenticationForm},
        name='login'),
-
-   url(r'^logout/$', 'django.contrib.auth.views.logout',
+   url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
        {'next_page': '/'},
        name='logout'),
 
