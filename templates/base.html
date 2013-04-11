@@ -63,6 +63,7 @@
           <ul class="nav">
             <li><a href="{% url "exposition_list" %}" title="Expositions">Expositions</a>
             <li><a href="{% url "plant_list" %}" title="Plants">Plants</a>
+            <li><a href="{% url "about" %}" title="About">About</a>
             {% if user.is_superuser %}
               <li>
                 <a href="{% url "admin:index" %}"

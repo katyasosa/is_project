@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 <div id="content">
-{% block content %}
-    {% if user.is_authenticated %}
+    {% block content %}
         {% if user.groups.all %}
             Your roles are:
             <ul>
-            {% for group in user.groups.all %}
-                <li> {{ group.name }} </li>
-            {% endfor %}
+                {% for group in user.groups.all %}
+                    <li> {{ group.name }} </li>
+                {% endfor %}
             </ul>
         {% else %}
             You have no role.
@@ -35,9 +34,5 @@
                 {% endif %}
             </ul>
         </div>
-
-    {% else %}
-    {% endif %}
-
-{% endblock %}
+    {% endblock %}
 </div>
