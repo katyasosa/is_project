@@ -18,9 +18,9 @@ class Migration(SchemaMigration):
     models = {
         u'exposition_management.exposition': {
             'Meta': {'object_name': 'Exposition'},
-            'begin': ('django.db.models.fields.DateField', [], {}),
+            'closing_date': ('django.db.models.fields.DateField', [], {}),
+            'opening_date': ('django.db.models.fields.DateField', [], {}),
             'description': ('django.db.models.fields.TextField', [], {}),
-            'end': ('django.db.models.fields.DateField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'plants': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['exposition_management.Plant']", 'through': u"orm['exposition_management.PlantPosition']", 'symmetrical': 'False'}),
