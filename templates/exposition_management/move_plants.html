@@ -4,9 +4,8 @@
 {% block head %}
     <script>
         var height = {{ room.height }};
-        var cell_size = 30;
-
         var width = {{ room.width }};
+        var cell_size = 30;
 
         var table = new Array(height);
         for (var i = 0; i < height; i++) {
