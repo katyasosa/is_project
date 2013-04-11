@@ -66,6 +66,28 @@
     }
 },
 {
+    "pk": 4,
+    "model": "exposition_management.plant",
+    "fields": {
+        "species": 3
+    }
+},
+{
+    "pk": 5,
+    "model": "exposition_management.plant",
+    "fields": {
+        "species": 1
+    }
+},
+{
+    "pk": 6,
+    "model": "exposition_management.plant",
+    "fields": {
+        "species": 2
+    }
+},
+
+{
     "pk": 1,
     "model": "exposition_management.exposition",
     "fields": {
