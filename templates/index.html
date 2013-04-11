@@ -20,6 +20,14 @@
                     view <a href={% url 'exposition_list' %}>
                     list of expositions</a>
                 </li>
+
+                {% if is_manager %}
+                    <li>
+                        view <a href={% url 'exposition_archive' %}>
+                        archive</a>
+                    </li>
+                {% endif %}
+
                 {% if is_biologist %}
                     <li>
                         view <a href={% url 'plant_list' %}>list of plants</a>

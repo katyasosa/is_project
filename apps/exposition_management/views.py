@@ -1,3 +1,4 @@
+import datetime
 from django.core.urlresolvers import reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django.views.generic.edit import ModelFormMixin
@@ -79,6 +80,18 @@ class EditPositionsView(ModelFormSetView):
 
 class ExpositionListView(ListView):
     model = Exposition
+
+    @property
+    def queryset(self):
+        return Exposition.objects.exclude(stage=Exposition.STAGE_ARCHIVED)
+
+
+class ExpositionListArchiveView(ListView):
+    model = Exposition
+
+    @property
+    def queryset(self):
+        return Exposition.objects.filter(stage=Exposition.STAGE_ARCHIVED)
 
 
 class ExpositionDetailView(DetailView):
