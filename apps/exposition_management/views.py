@@ -61,10 +61,19 @@ class EditPositionsView(ModelFormSetView):
         return PositionsFormSet
 
     def get_context_data(self, **kwargs):
-        room = Exposition.objects.get(pk=self.kwargs['pk']).room
+        exposition = Exposition.objects.get(pk=self.kwargs['pk'])
+        room = exposition.room
         context = {'room': room}
-        context.update(**kwargs)
 
+        # would be much much better, if this was in EditExpositionForm
+        plant_ids = PlantPosition.objects.filter(exposition=exposition)\
+            .values_list('plant', flat=True)
+
+        plants = Plant.objects.select_related().in_bulk(plant_ids)
+        picture_urls = [plant.species.preview_url for plant in plants.values()]
+        context['pictures_urls'] = picture_urls
+
+        context.update(**kwargs)
         return super(EditPositionsView, self).get_context_data(**context)
 
 

@@ -4,15 +4,22 @@
 {% block head %}
     <script>
         var height = {{ room.height }};
+        var cell_size = 30;
+
         var width = {{ room.width }};
 
         var table = new Array(height);
-
         for (var i = 0; i < height; i++) {
             table[i] = new Array(width);
         }
 
         var plant_forms;
+        var plant_pictures = [
+            {% for url in pictures_urls %}
+                "{{ url }}",
+            {% endfor %}
+        ];
+
         function collect_forms() {
             plant_forms = $(".plant_form");
             $(".plant_form").find('.position_x input').attr('hidden', true);
@@ -46,18 +53,19 @@
             var plants_collection = $("#plants_collection");
             for (i = 0; i < plant_forms.length; i++) {
                 var p = $("<div class='plant'></div>");
+                p.css('background-image', "url('"+ plant_pictures[i] + "')");
                 var form = plant_forms[i];
                 var x = $(form).find('.position_x input').attr('value');
                 var y = $(form).find('.position_y input').attr('value');
                 p.data('form', form).appendTo(plants_collection);
                 if (x >= 0 && x <= width && y >= 0 && y <= height) {
-                    p.css('left', 30 * x);
-                    p.css('top', 30 * y);
+                    p.css('left', cell_size * x);
+                    p.css('top', cell_size * y);
                 } else {
-                    p.css('left', 330);
-                    p.css('top', 30);
+                    p.css('left', (width + 1) * cell_size);
+                    p.css('top', cell_size);
                 }
-                p.draggable({ grid: [30, 30] });
+                p.draggable({ grid: [cell_size, cell_size] });
             }
         })
     </script>
@@ -78,7 +86,7 @@
         #plants_collection {
             position: absolute;
             height: 300px;
-            float : right;
+            float: right;
         }
 
         .row_ {
@@ -97,8 +105,8 @@
             position: absolute;
             height: 28px;
             width: 28px;
-            background: darkturquoise;
             border: 1px solid black;
+            background-size: 30px 30px;
         }
 
         .plant_form {
