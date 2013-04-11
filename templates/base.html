@@ -66,14 +66,10 @@
 
         <div id="authentication">
           {% if user.is_authenticated %}
-            <a href="{% url "logout" %}" title="Logout">
-              <button class="btn">Logout</button>
-            </a>
+            <a class="btn" href="{% url "logout" %}" title="Logout">Logout</a>
           {% else %}
-            <a href="{% url "login" %}" title="Login">
-              <button class="btn btn-success">
-                <i class="icon-user icon-white"></i> Login
-              </button>
+            <a class="btn btn-success" href="{% url "login" %}" title="Login">
+              <i class="icon-user icon-white"></i> Login
             </a>
           {% endif %}
         </div>

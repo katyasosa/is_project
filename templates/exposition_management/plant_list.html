@@ -5,15 +5,18 @@
 {% block content %}
   {% if plant_list %}
       <h1>Plants
-        <a href="{% url "add_plant" %}" title="Add new plant to the database">
-          <button class="btn">
+
+        <span class="buttons">
+          <a class="btn" href="{% url "add_plant" %}" title="Add new plant to the database">
             <i class="icon-plus-sign"></i> Add <strong>new</strong> plant
-          </button>
-        </a>
+          </a>
+        </span>
       </h1>
-      <ul class="thumbnails span8">
+
+      <ul class="thumbnails span12">
         {% for plant in plant_list %}
-          <li class="span3">
+          <li {% if forloop.counter0|divisibleby:6 %}style="margin-left: 0"{% endif %}
+              class="span2">
             <div class="thumbnail">
               <img src="{{ plant.species.preview_url }}" alt="{{ plant.species }}" />
               <div class="caption">{{ plant }}</div>

@@ -5,6 +5,8 @@ body > .navbar #authentication {
   float: right;
 }
 
+h1 > .buttons { float: right; font-weight: normal; }
+
 /* Image picker. */
 .imagepicker + .thumbnails .thumbnail p,
 .thumbnail .caption { text-align: center; }
