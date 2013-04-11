@@ -14,11 +14,12 @@ class PreviewMixin(object):
 
 @python_2_unicode_compatible
 class Room(models.Model, PreviewMixin):
-    area = models.IntegerField()
+    width = models.IntegerField()
+    height = models.IntegerField()
     image = ImageWithThumbsField(upload_to='room_images', sizes=[(200, 200)])
 
     def __str__(self):
-        return unicode(self.area) + u' area room'
+        return '{0} x {1} room'.format(self.width, self.height)
 
 
 @python_2_unicode_compatible

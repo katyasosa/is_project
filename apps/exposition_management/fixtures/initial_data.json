@@ -4,7 +4,8 @@
     "model": "exposition_management.room",
     "fields": {
         "image": "room_images/room1.jpg",
-        "area": 30
+        "width": 10,
+        "height": 10
     }
 },
 {
@@ -12,7 +13,8 @@
     "model": "exposition_management.room",
     "fields": {
         "image": "room_images/room2.jpg",
-        "area": 42
+        "width": 20,
+        "height": 10
     }
 },
 {
