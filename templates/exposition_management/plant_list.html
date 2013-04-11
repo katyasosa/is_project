@@ -1,20 +1,27 @@
 {% extends "base.html" %}
+
 {% load url from future %}
-<div id="content">
+
 {% block content %}
-    {% if plant_list %}
-        We have next plants
-        <ul>
-            {% for plant in plant_list %}
-                <li> {{ plant }} </li>
-            {% endfor %}
-        </ul>
+  {% if plant_list %}
+      <h1>Plants
+        <a href="{% url "add_plant" %}" title="Add new plant to the database">
+          <button class="btn">
+            <i class="icon-plus-sign"></i> Add <strong>new</strong> plant
+          </button>
+        </a>
+      </h1>
+      <ul class="thumbnails span8">
+        {% for plant in plant_list %}
+          <li class="span3">
+            <div class="thumbnail">
+              <img src="{{ plant.species.preview_url }}" alt="{{ plant.species }}" />
+              <div class="caption">{{ plant }}</div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
     {% else %}
         <p>No plants yet.</p>
     {% endif %}
-    <div id="actions">
-        You can
-        <a href={% url 'add_plant' %}>add new plant to database</a>
-    </div>
 {% endblock %}
-</div>

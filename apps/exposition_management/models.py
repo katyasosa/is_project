@@ -2,11 +2,18 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from django.utils.html import mark_safe
 from django_thumbs.db.models import ImageWithThumbsField
+
+class PreviewMixin(object):
+    @property
+    def preview_url(self):
+        return mark_safe(self.image.url_200x200 if self.image else
+                         "http://placekitten.com/200/200")
 
 
 @python_2_unicode_compatible
-class Room(models.Model):
+class Room(models.Model, PreviewMixin):
     area = models.IntegerField()
     image = ImageWithThumbsField(upload_to='room_images', sizes=[(200, 200)])
 
@@ -15,7 +22,7 @@ class Room(models.Model):
 
 
 @python_2_unicode_compatible
-class PlantSpecies(models.Model):
+class PlantSpecies(models.Model, PreviewMixin):
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = ImageWithThumbsField(

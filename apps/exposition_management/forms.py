@@ -17,9 +17,13 @@ class ExpositionForm(forms.ModelForm):
         exclude = ['plants']
 
     def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Submit'))
         super(ExpositionForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        if self.initial:
+            self.helper.add_input(Submit('submit', 'Save'))
+        else:
+            self.helper.add_input(Submit('submit', 'Add'))
 
 
 class EditExpositionForm(forms.ModelForm):
@@ -45,6 +49,10 @@ class PlantForm(forms.ModelForm):
         model = Plant
 
     def __init__(self, *args, **kwargs):
-        self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Submit'))
         super(PlantForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        if self.initial:
+            self.helper.add_input(Submit('submit', 'Save'))
+        else:
+            self.helper.add_input(Submit('submit', 'Add'))

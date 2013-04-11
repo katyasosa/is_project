@@ -25,10 +25,8 @@ class ImagePicker(widgets.Select):
         obj = option_label
 
         # Make everything ready for 'image-picker.js'.
-        image_url = (obj.image.url_200x200 if obj.image else
-                     "http://placekitten.com/200/200")
-        image_picker_html = mark_safe(' data-img-src="{0}" data-img-label="{1}"'
-                                      .format(image_url, obj))
+        image_picker_html = mark_safe(
+            ' data-img-src="{0.preview_url}" data-img-label="{0}"'.format(obj))
         return format_html('<option value="{0}"{1}{2}>{3}</option>',
                            option_value,
                            selected_html,
