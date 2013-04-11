@@ -6,7 +6,7 @@ from extra_views import ModelFormSetView
 
 from .forms import ExpositionForm, EditExpositionForm, \
      PositionsFormSet, PlantForm
-from .models import Exposition, Plant, PlantPosition
+from .models import Exposition, Plant, PlantPosition, Room
 
 
 class EditExpositionMixin(object):
@@ -59,6 +59,13 @@ class EditPositionsView(ModelFormSetView):
 
     def get_formset(self):
         return PositionsFormSet
+
+    def get_context_data(self, **kwargs):
+        room = Room.objects.get(pk=self.kwargs['pk'])
+        context = {'room': room}
+        context.update(**kwargs)
+
+        return super(EditPositionsView, self).get_context_data(**context)
 
 
 class ExpositionListView(ListView):

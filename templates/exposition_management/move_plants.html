@@ -3,8 +3,9 @@
 
 {% block head %}
     <script>
-        var height = 10;
-        var width = 10;
+        var height = {{ room.height }};
+        var width = {{ room.width }};
+
         var table = new Array(height);
 
         for (var i = 0; i < height; i++) {
@@ -22,7 +23,7 @@
             collect_forms();
             var room = $("#room");
             for (var i = 0; i < height; i++) {
-                var row = $("<div class='row'></div>");
+                var row = $("<div class='row_'></div>");
                 for (var j = 0; j < width; j++) {
                     var d = $("<div class='cell'></div>");
                     d.data({"x": j, "y": i});
@@ -35,7 +36,6 @@
                             form.find('.position_y input')
                                     .attr('value', $(this).data("y"));
 
-                            $(this).addClass("ui-state-highlight");
                         }});
                     row.append(d);
                     table[i][j] = d;
@@ -69,9 +69,10 @@
 
         #room {
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: darkcyan;
+            width: {% widthratio room.width 1 30 %}px;
+            height: {% widthratio room.height 1 30 %}px;
+            background-image: url('{{ room.image.url }}');
+            background-size: {% widthratio room.width 1 30 %}px {% widthratio room.height 1 30 %}px;
         }
 
         #plants_collection {
@@ -80,8 +81,8 @@
             float : right;
         }
 
-        .row {
-            width: 303px;
+        .row_ {
+            width: {% widthratio room.width 1 30 %}px;
             height: 30px;
         }
 
@@ -89,7 +90,6 @@
             float: left;
             width: 28px;
             height: 28px;
-            background: yellowgreen;
             border: 1px solid black;
         }
 
