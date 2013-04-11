@@ -61,7 +61,7 @@ class EditPositionsView(ModelFormSetView):
         return PositionsFormSet
 
     def get_context_data(self, **kwargs):
-        room = Room.objects.get(pk=self.kwargs['pk'])
+        room = Exposition.objects.get(pk=self.kwargs['pk']).room
         context = {'room': room}
         context.update(**kwargs)
 
