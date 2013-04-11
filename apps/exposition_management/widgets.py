@@ -1,12 +1,12 @@
 # coding=utf-8
 from __future__ import unicode_literals
 
-from django.forms import widgets
+from django.forms.widgets import Select, SelectMultiple
 from django.utils.encoding import force_text
 from django.utils.html import mark_safe, format_html
 
 
-class ImagePicker(widgets.Select):
+class ImagePicker(Select):
     def __init__(self, image_field="image", *args, **kwargs):
         self.image_field = image_field
         super(ImagePicker, self).__init__(*args, **kwargs)
@@ -33,3 +33,15 @@ class ImagePicker(widgets.Select):
                            selected_html,
                            image_picker_html,
                            force_text(option_label))
+
+class MultipleImagePicker(ImagePicker, SelectMultiple):
+    allow_multiple_selected = True
+
+    def render(self, name, value, attrs=None, choices=()):
+        return SelectMultiple.render(self, name, value, attrs, choices)
+
+    def value_from_datadict(self, data, files, name):
+        return SelectMultiple.value_from_datadict(self, data, files, name)
+
+    def _has_changed(self, initial, data):
+        return SelectMultiple._has_changed(initial, data)

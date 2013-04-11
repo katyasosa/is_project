@@ -2,16 +2,17 @@
 from __future__ import absolute_import, unicode_literals
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, HTML
 from django import forms
 from django.forms.models import modelformset_factory
 
 from .fields import ImageChoiceField
 from .models import Exposition, Room, Plant, PlantPosition, PlantSpecies
+from .widgets import ImagePicker, MultipleImagePicker
 
 
 class ExpositionForm(forms.ModelForm):
-    room = ImageChoiceField(Room.objects.all())
+    room = ImageChoiceField(Room.objects.all(), widget=ImagePicker)
 
     class Meta:
         model = Exposition
@@ -28,9 +29,21 @@ class ExpositionForm(forms.ModelForm):
 
 
 class EditExpositionForm(forms.ModelForm):
+    plants = ImageChoiceField(
+        PlantSpecies.objects.all(), widget=MultipleImagePicker)
+
     class Meta:
         model = Exposition
         fields = ['plants']
+
+    def __init__(self, *args, **kwargs):
+        super(EditExpositionForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        if self.initial:
+            self.helper.add_input(Submit('submit', 'Save'))
+        else:
+            self.helper.add_input(Submit('submit', 'Add'))
 
 
 class PlantPositionForm(forms.ModelForm):
@@ -44,7 +57,7 @@ PositionsFormSet = modelformset_factory(
 
 
 class PlantForm(forms.ModelForm):
-    species = ImageChoiceField(PlantSpecies.objects.all())
+    species = ImageChoiceField(PlantSpecies.objects.all(), widget=ImagePicker)
 
     class Meta:
         model = Plant
