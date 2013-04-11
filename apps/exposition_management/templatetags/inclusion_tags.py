@@ -5,9 +5,10 @@ register = template.Library()
 
 
 @register.inclusion_tag('exposition_management/room_with_plants.html')
-def draw_exposition_room(exposition, callback):
+def draw_exposition_room(exposition, editable, callback):
     context = {'callback': callback,
-               'room': exposition.room}
+               'room': exposition.room,
+               'editable': editable}
 
     plant_positions = PlantPosition.objects.filter(exposition=exposition)
     context['plants'] = [

@@ -23,7 +23,7 @@
 
 {% block content %}
 
-    {% draw_exposition_room exposition "callback" %}
+    {% draw_exposition_room exposition "true" "callback" %}
 
     <form action="" method="post">{% csrf_token %}
         {{ formset.management_form }}
@@ -41,7 +41,7 @@
                 <br>
             </div>
         {% endfor %}
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Save"/>
     </form>
 
     <br>

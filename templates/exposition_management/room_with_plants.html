@@ -49,7 +49,10 @@
             p.css('background-image', "url('" + plant.image_url + "')");
             p.css('left', cell_size * plant.x);
             p.css('top', cell_size * plant.y);
-            p.draggable({ grid: [cell_size, cell_size] });
+
+            if ({{ editable }}){
+              p.draggable({ grid: [cell_size, cell_size] });
+            }
         }
     })
 </script>

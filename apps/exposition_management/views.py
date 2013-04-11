@@ -66,6 +66,9 @@ class EditPositionsView(ModelFormSetView):
         context.update(**kwargs)
         return super(EditPositionsView, self).get_context_data(**context)
 
+    def get_success_url(self):
+        return reverse('exposition_detail', kwargs={'pk':self.kwargs['pk']})
+
 
 class ExpositionListView(ListView):
     model = Exposition
