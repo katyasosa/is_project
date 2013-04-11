@@ -1,4 +1,3 @@
-import datetime
 from django.core.urlresolvers import reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django.views.generic.edit import ModelFormMixin
@@ -7,7 +6,7 @@ from extra_views import ModelFormSetView
 
 from .forms import ExpositionForm, EditExpositionForm, \
      PositionsFormSet, PlantForm
-from .models import Exposition, Plant, PlantPosition, Room
+from .models import Exposition, Plant, PlantPosition
 
 
 class EditExpositionMixin(object):
@@ -63,17 +62,7 @@ class EditPositionsView(ModelFormSetView):
 
     def get_context_data(self, **kwargs):
         exposition = Exposition.objects.get(pk=self.kwargs['pk'])
-        room = exposition.room
-        context = {'room': room}
-
-        # would be much much better, if this was in EditExpositionForm
-        plant_ids = PlantPosition.objects.filter(exposition=exposition)\
-            .values_list('plant', flat=True)
-
-        plants = Plant.objects.select_related().in_bulk(plant_ids)
-        picture_urls = [plant.species.preview_url for plant in plants.values()]
-        context['pictures_urls'] = picture_urls
-
+        context = {'exposition': exposition}
         context.update(**kwargs)
         return super(EditPositionsView, self).get_context_data(**context)
 

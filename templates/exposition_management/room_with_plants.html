@@ -1,0 +1,103 @@
+<script>
+    var height = {{ room.height }};
+    var width = {{ room.width }};
+    var cell_size = 30;
+
+    var table = new Array(height);
+    for (var i = 0; i < height; i++) {
+        table[i] = new Array(width);
+    }
+
+    var plants = [
+        {% for plant in plants %}
+            {
+                id: {{ plant.id }},
+                x: {{ plant.x }},
+                y: {{ plant.y }},
+                image_url: "{{ plant.image_url }}"
+            },
+        {% endfor %}
+    ];
+
+    $(function () {
+        var room = $("#room");
+        for (var i = 0; i < height; i++) {
+            var row = $("<div class='row_'></div>");
+            for (var j = 0; j < width; j++) {
+                var d = $("<div class='cell'></div>");
+                d.data({"x": j, "y": i});
+                d.droppable({
+                    drop: function (event, ui) {
+                        var plant = ui.draggable;
+                        {{ callback }}($(plant).data('plant').id,
+                                       $(this).data("x"),
+                                       $(this).data("y"));
+                    }});
+                row.append(d);
+                table[i][j] = d;
+            }
+            room.append(row);
+        }
+
+        var plants_collection = $("#plants_collection");
+        for (i = 0; i < plants.length; i++) {
+            var plant = plants[i];
+
+            var p = $("<div class='plant'></div>");
+            p.data('plant', plant).appendTo(plants_collection);
+
+            p.css('background-image', "url('" + plant.image_url + "')");
+            p.css('left', cell_size * plant.x);
+            p.css('top', cell_size * plant.y);
+            p.draggable({ grid: [cell_size, cell_size] });
+        }
+    })
+</script>
+<style>
+    #room_container {
+        width: 400px;
+        height: 400px;
+    }
+
+    #room {
+        position: absolute;
+        width: {% widthratio room.width 1 30 %}px;
+        height: {% widthratio room.height 1 30 %}px;
+        background-image: url('{{ room.image.url }}');
+        background-size: {% widthratio room.width 1 30 %}px {% widthratio room.height 1 30 %}px;
+    }
+
+    #plants_collection {
+        position: absolute;
+        height: 300px;
+        float: right;
+    }
+
+    .row_ {
+        width: {% widthratio room.width 1 30 %}px;
+        height: 30px;
+    }
+
+    .cell {
+        float: left;
+        width: 30px;
+        height: 30px;
+    }
+
+    .plant {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        background-size: 30px 30px;
+    }
+
+</style>
+
+<div id="room_container">
+    <div id="room">
+
+    </div>
+    <div id="plants_collection">
+
+    </div>
+</div>
