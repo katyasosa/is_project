@@ -13,7 +13,7 @@ def draw_exposition_room(exposition, editable, callback):
     plant_positions = PlantPosition.objects.filter(exposition=exposition)
     context['plants'] = [
         {
-            'id': p.plant.id,
+            'id': p.id,
             'x': p.position_x,
             'y': p.position_y,
             'image_url': p.plant.species.preview_url
