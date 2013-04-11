@@ -1,0 +1,160 @@
+[
+{
+    "pk": 1,
+    "model": "exposition_management.room",
+    "fields": {
+        "image": "room_images/room1.jpg",
+        "area": 30
+    }
+},
+{
+    "pk": 2,
+    "model": "exposition_management.room",
+    "fields": {
+        "image": "room_images/room2.jpg",
+        "area": 42
+    }
+},
+{
+    "pk": 1,
+    "model": "exposition_management.plantspecies",
+    "fields": {
+        "image": "",
+        "name": " Apothecary rose",
+        "description": "Rosa gallica 'Versicolor') boasts vibrant, carmine-pink blooms that are scented. The cupped, semidouble blooms appear in spring to early summer and are followed by orange-red hips at the end of the season. R. gallica plants are rounded and compact, growing 4 feet tall and 3 feet wide. Zones 3-9"
+    }
+},
+{
+    "pk": 2,
+    "model": "exposition_management.plantspecies",
+    "fields": {
+        "image": "",
+        "name": "White rugosa rose",
+        "description": "(Rosa rugosa alba) offers large hips, prickly thorns, and wavy leaves. Its white flowers open from pink-tinged buds, are sweetly tea-rose scented, and appear through the season. It grows 8 feet tall and wide. Zones 2-9"
+    }
+},
+{
+    "pk": 3,
+    "model": "exposition_management.plantspecies",
+    "fields": {
+        "image": "",
+        "name": "Camellia sinensis (tea)",
+        "description": "Tea is a shrub, grown for a hot drink made from its leaves. It is appreciated for its stimulant properties and health benefits, and as the centre of social rituals such as the Japanese tea ceremony and British teatime. Two varieties are recognised; Camellia sinensis var. sinensis (Chinese tea) and C. sinensis var. assamica (Assam tea, Indian tea). For centuries it was thought that black and green teas came from different plants. In fact they come from the same species, but black tea is fermented."
+    }
+},
+{
+    "pk": 1,
+    "model": "exposition_management.plant",
+    "fields": {
+        "species": 1
+    }
+},
+{
+    "pk": 2,
+    "model": "exposition_management.plant",
+    "fields": {
+        "species": 2
+    }
+},
+{
+    "pk": 3,
+    "model": "exposition_management.plant",
+    "fields": {
+        "species": 3
+    }
+},
+{
+    "pk": 1,
+    "model": "exposition_management.exposition",
+    "fields": {
+        "room": 2,
+        "closing_date": "2013-04-30",
+        "description": "A rose is a woody perennial of the genus Rosa, within the family Rosaceae. There are over 100 species. They form a group of plants that can be erect shrubs, climbing or trailing with stems that are often armed with sharp prickles. Flowers vary in size and shape and are usually large and showy, in colours ranging from white through yellows and reds. Most species are native to Asia, with smaller numbers native to Europe, North America, and northwest Africa. Species, cultivars and hybrids are all widely grown for their beauty and often are fragrant. Rose plants range in size from compact, miniature roses, to climbers that can reach 7 meters in height. Different species hybridize easily, and this has been used in the development of the wide range of garden roses.",
+        "name": "Rose expo",
+        "opening_date": "2013-04-19",
+        "stage": 1
+    }
+},
+{
+    "pk": 2,
+    "model": "exposition_management.exposition",
+    "fields": {
+        "room": 1,
+        "closing_date": "2013-04-08",
+        "description": "Description",
+        "name": "Example expo",
+        "opening_date": "2013-04-06",
+        "stage": 1
+    }
+},
+{
+    "pk": 1,
+    "model": "exposition_management.plantposition",
+    "fields": {
+        "plant": 1,
+        "exposition": 1,
+        "position_x": 5,
+        "position_y": 4
+    }
+},
+{
+    "pk": 2,
+    "model": "exposition_management.plantposition",
+    "fields": {
+        "plant": 1,
+        "exposition": 2,
+        "position_x": 2,
+        "position_y": 2
+    }
+},
+{
+    "pk": 3,
+    "model": "exposition_management.plantposition",
+    "fields": {
+        "plant": 2,
+        "exposition": 2,
+        "position_x": 2,
+        "position_y": 5
+    }
+},
+{
+    "pk": 4,
+    "model": "exposition_management.plantposition",
+    "fields": {
+        "plant": 4,
+        "exposition": 2,
+        "position_x": 6,
+        "position_y": 3
+    }
+},
+{
+    "pk": 5,
+    "model": "exposition_management.plantposition",
+    "fields": {
+        "plant": 5,
+        "exposition": 1,
+        "position_x": 2,
+        "position_y": 5
+    }
+},
+{
+    "pk": 6,
+    "model": "exposition_management.plantposition",
+    "fields": {
+        "plant": 3,
+        "exposition": 3,
+        "position_x": 6,
+        "position_y": 1
+    }
+},
+{
+    "pk": 7,
+    "model": "exposition_management.plantposition",
+    "fields": {
+        "plant": 5,
+        "exposition": 3,
+        "position_x": 5,
+        "position_y": 4
+    }
+}
+]
