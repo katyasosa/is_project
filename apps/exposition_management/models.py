@@ -39,6 +39,10 @@ class PlantSpecies(models.Model, PreviewMixin):
 class Plant(models.Model):
     species = models.ForeignKey(PlantSpecies)
 
+    @property
+    def preview_url(self):
+        return self.species.preview_url
+
     def __str__(self):
         return str(self.species) + " plant"
 

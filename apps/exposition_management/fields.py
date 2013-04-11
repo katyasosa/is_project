@@ -11,3 +11,10 @@ class ImageChoiceField(forms.ModelChoiceField):
 
     def label_from_instance(self, obj):
         return obj
+
+class ImageMultipleChoiceField(forms.ModelMultipleChoiceField):
+    def __init__(self, *args, **kwargs):
+        super(ImageMultipleChoiceField, self).__init__(*args, **kwargs)
+
+    def label_from_instance(self, obj):
+        return obj

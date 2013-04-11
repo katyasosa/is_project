@@ -6,7 +6,7 @@ from crispy_forms.layout import Submit, HTML
 from django import forms
 from django.forms.models import modelformset_factory
 
-from .fields import ImageChoiceField
+from .fields import ImageChoiceField, ImageMultipleChoiceField
 from .models import Exposition, Room, Plant, PlantPosition, PlantSpecies
 from .widgets import ImagePicker, MultipleImagePicker
 
@@ -29,8 +29,8 @@ class ExpositionForm(forms.ModelForm):
 
 
 class EditExpositionForm(forms.ModelForm):
-    plants = ImageChoiceField(
-        PlantSpecies.objects.all(), widget=MultipleImagePicker)
+    plants = ImageMultipleChoiceField(
+        Plant.objects.all(), widget=MultipleImagePicker)
 
     class Meta:
         model = Exposition
