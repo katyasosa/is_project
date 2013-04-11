@@ -14,8 +14,8 @@ class PreviewMixin(object):
 
 @python_2_unicode_compatible
 class Room(models.Model, PreviewMixin):
-    width = models.IntegerField()
-    height = models.IntegerField()
+    width = models.PositiveIntegerField()
+    height = models.PositiveIntegerField()
     image = ImageWithThumbsField(upload_to='room_images', sizes=[(200, 200)])
 
     def __str__(self):
@@ -75,8 +75,8 @@ class PlantPosition(models.Model):
     plant = models.ForeignKey(Plant)
     exposition = models.ForeignKey(Exposition)
 
-    position_x = models.IntegerField(default=0)
-    position_y = models.IntegerField(default=0)
+    position_x = models.PositiveIntegerField(default=0)
+    position_y = models.PositiveIntegerField(default=0)
 
 
 # A hack to make 'South' work with 'ImageWithThumbsField'.
