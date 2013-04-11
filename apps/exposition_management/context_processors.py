@@ -1,3 +1,4 @@
+# coding=utf-8
 ROLE_MANAGER = 'manager'
 ROLE_BIOLOGIST = 'biologist'
 ROLE_DESIGNER = 'designer'
