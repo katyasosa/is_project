@@ -29,13 +29,12 @@
     <!-- Note(superbobry): for some reason, GitHub-hosted CSSs don't work :-( -->
     <link href="{% static "css/datepicker.css" %}" rel="stylesheet" />
     <link href="{% static "css/image-picker.css" %}" rel="stylesheet" />
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css"
-          rel="stylesheet" />
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <link href="{% static "css/bootstrap-combined.min.css" %}" rel="stylesheet" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/bootstrap-datepicker.js" %}"></script>
     <script src="{% static "js/image-picker.min.js" %}"></script>
 
@@ -56,6 +55,7 @@
     <div class="navbar-inner">
       <div class="container">
         <a class="brand" href="/">
+          <img src="{% static "img/brand.png" %}" />
           florida
         </a>
 

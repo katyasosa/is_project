@@ -1,3 +1,5 @@
+body > .navbar .brand img { height: 30px; margin-top: -10px; }
+
 body > .navbar #authentication {
   padding-right: 0;
   padding-left: 0;
