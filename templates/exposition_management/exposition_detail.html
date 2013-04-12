@@ -1,9 +1,32 @@
 {% extends "base.html" %}
 {% load inclusion_tags %}
 
+{% block head %}
+    <script>
+        $(function() {
+            var stages = [
+                undefined
+                , ""               // IDEA
+                , "label-warning"  // PLANT SELECTION
+                , "label-warning"  // DESIGN
+                , "label-warning"  // VERIFICATION
+                , "label-info"     // WAITING
+                , "label-success"  // ACTIVE
+                , "label-inverse"  // ARCHIVED
+            ];
+
+            $("span[data-stage]").map(function() {
+                e = $(this)
+                e.addClass(stages[e.attr("data-stage")]);
+            });
+        });
+    </script>
+{% endblock %}
 
 {% block content %}
-  <h1>{{ exposition.name }}
+  <h1>
+    {{ exposition.name }}
+    <span data-stage="{{ exposition.stage }}" class="label">{{ exposition.get_stage_display }}</span>
 
     <span class="buttons">
       {% if is_biologist %}
@@ -22,7 +45,6 @@
         </a>
       {% endif %}
     </span>
-  </h1>
 
   <h5>{{ exposition.opening_date }} &mdash; {{ exposition.closing_date }}</h5>
 

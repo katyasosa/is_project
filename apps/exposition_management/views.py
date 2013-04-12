@@ -22,7 +22,7 @@ class CreateExpositionView(CreateView):
 
     def form_valid(self, form):
         exposition = form.save(commit=False)
-        exposition.stage = Exposition.STAGE_IDEA
+        exposition.stage = Exposition.STAGE_PLANT_SELECTION
         exposition.save()
         return super(ModelFormMixin, self).form_valid(form)
 
@@ -44,6 +44,7 @@ class AddPlantsToExpositionView(EditExpositionMixin, UpdateView):
             relation = PlantPosition(exposition=exposition, plant=p)
             relation.save()
 
+        exposition.stage = exposition.STAGE_DESIGN
         exposition.save()
         return super(ModelFormMixin, self).form_valid(form)
 
@@ -65,6 +66,13 @@ class EditPositionsView(ModelFormSetView):
         context = {'exposition': exposition}
         context.update(**kwargs)
         return super(EditPositionsView, self).get_context_data(**context)
+
+    def formset_valid(self, formset):
+        exposition = Exposition.objects.get(pk=self.kwargs['pk'])
+        exposition.stage = exposition.STAGE_ACTIVE
+        exposition.save()
+        return super(EditPositionsView, self).formset_valid(formset)
+
 
     def get_success_url(self):
         return reverse('exposition_detail', kwargs={'pk':self.kwargs['pk']})
